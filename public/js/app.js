@@ -1,6 +1,15 @@
 $('.show-todolist-modal').click(function(event) {
     event.preventDefault();
 
+    var url = $(this).attr('href');
+    $.ajax({
+      url:url,
+      dataType: 'html',
+      success: function(response){
+        $('#todo-list-body').html(response);
+      }
+    })
+
     $('#todolist-modal').modal('show');
 });
 

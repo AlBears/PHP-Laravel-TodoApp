@@ -28,7 +28,8 @@ class TodoListsController extends Controller
      */
     public function create()
     {
-        //
+        $todoList = new TodoList();
+        return view('todolists.form', compact('todoList'));
     }
 
     /**
