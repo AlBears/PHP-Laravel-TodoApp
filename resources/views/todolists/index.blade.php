@@ -25,57 +25,37 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <h4 class="list-group-item-heading">List group item heading <span class="badge">10 tasks</span></h4>
-                            <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero rem alias asperiores! Obcaecati ad quae, labore quo delectus voluptatum, eaque dolore ab, quibusdam pariatur accusantium deserunt quasi laboriosam? Laboriosam, quasi.</p>
-                            <div class="buttons">
-                                <a href="#" class="btn btn-info show-task-modal btn-xs" title="Manage Tasks">
-                                    <i class="glyphicon glyphicon-ok"></i>
-                                </a>
-                                <a href="#" class="btn btn-default show-todolist-modal btn-xs" title="Edit">
-                                    <i class="glyphicon glyphicon-edit"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs" title="Delete">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <h4 class="list-group-item-heading">List group item heading <span class="badge">10 tasks</span></h4>
-                            <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero rem alias asperiores! Obcaecati ad quae, labore quo delectus voluptatum, eaque dolore ab, quibusdam pariatur accusantium deserunt quasi laboriosam? Laboriosam, quasi.</p>
-                            <div class="buttons">
-                                <a href="#" class="btn btn-info show-task-modal btn-xs" title="Manage Tasks">
-                                    <i class="glyphicon glyphicon-ok"></i>
-                                </a>
-                                <a href="#" class="btn btn-default show-todolist-modal btn-xs" title="Edit">
-                                    <i class="glyphicon glyphicon-edit"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs" title="Delete">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </a>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <h4 class="list-group-item-heading">List group item heading <span class="badge">10 tasks</span></h4>
-                            <p class="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero rem alias asperiores! Obcaecati ad quae, labore quo delectus voluptatum, eaque dolore ab, quibusdam pariatur accusantium deserunt quasi laboriosam? Laboriosam, quasi.</p>
-                            <div class="buttons">
-                                <a href="#" class="btn btn-info show-task-modal btn-xs" title="Manage Tasks">
-                                    <i class="glyphicon glyphicon-ok"></i>
-                                </a>
-                                <a href="#" class="btn btn-default show-todolist-modal btn-xs" title="Edit">
-                                    <i class="glyphicon glyphicon-edit"></i>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs" title="Delete">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </a>
-                            </div>
-                        </li>
+              <?php $count = $todoLists->count(); ?>
+              <div class="alert alert-warning {{ $count ? 'hidden' : '' }}" id="no-record-alert">
+                No records found
+              </div>
+
+                <div class="panel panel-default {{ ! $count ? 'hidden' : '' }}">
+                    <ul class="list-group" id="todo-list">
+                      @foreach($todoLists as $todoList)
+
+                      <li class="list-group-item">
+                          <h4 class="list-group-item-heading">{{ $todoList->title }} <span class="badge">0 task</span></h4>
+                          <p class="list-group-item-text">{{ $todoList->description }}</p>
+                          <div class="buttons">
+                              <a href="#" class="btn btn-info show-task-modal btn-xs" title="Manage Tasks">
+                                  <i class="glyphicon glyphicon-ok"></i>
+                              </a>
+                              <a href="#" class="btn btn-default show-todolist-modal btn-xs" title="Edit">
+                                  <i class="glyphicon glyphicon-edit"></i>
+                              </a>
+                              <a href="#" class="btn btn-danger btn-xs" title="Delete">
+                                  <i class="glyphicon glyphicon-remove"></i>
+                              </a>
+                          </div>
+                      </li>
+
+                      @endforeach
+
                     </ul>
 
                     <div class="panel-footer">
-                        <small>3 list items</small>
+                        <small>{{ $count }} list items</small>
                     </div>
                 </div>
             </div>
