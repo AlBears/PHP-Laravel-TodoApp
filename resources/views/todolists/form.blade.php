@@ -1,4 +1,4 @@
-{!! Form::model($todoList, ['route' => 'todolists.create']) !!}
+{!! Form::model($todoList, ['route' => 'todolists.store']) !!}
 
     <div class="form-group">
         <label for="" class="control-label">List Name</label>
