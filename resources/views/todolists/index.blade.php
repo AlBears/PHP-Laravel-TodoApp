@@ -30,6 +30,10 @@
                 No records found
               </div>
 
+              <div class="alert alert-success" id="update-alert" style="display:none;">
+
+              </div>
+
                 <div class="panel panel-default {{ ! $count ? 'hidden' : '' }}">
                     <ul class="list-group" id="todo-list">
                       @foreach($todoLists as $todoList)

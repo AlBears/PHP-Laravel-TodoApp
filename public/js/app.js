@@ -1,4 +1,4 @@
-$('.show-todolist-modal').click(function(event) {
+$('body').on('click', '.show-todolist-modal', function(event) {
     event.preventDefault();
 
     var me = $(this);
@@ -20,8 +20,9 @@ $('.show-todolist-modal').click(function(event) {
     $('#todolist-modal').modal('show');
 });
 
-function showMessage(msg){
-  $("#add-new-alert").text(msg).fadeTo(1000, 500).slideUp(500, function(){
+function showMessage(msg, element){
+  var alert = element == undefined ? '#add-new-alert' : element;
+  $(alert).text(msg).fadeTo(1000, 500).slideUp(500, function(){
     $(this).hide();
   });
 }
@@ -69,6 +70,8 @@ $('#todo-list-save-btn').click(function(event){
           }
 
           $('#todolist-modal').modal('hide');
+
+          showMessage('Todo list has been updated!', '#update-alert');
         }
 
       },
