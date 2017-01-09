@@ -136,13 +136,29 @@ $('#confirm-remove-btn').click(function(event){
   });
 });
 
-$('.show-task-modal').click(function(event) {
+$('body').on('click', '.show-task-modal', function(event) {
     event.preventDefault();
+
+    var anchor = $(this),
+        url = anchor.attr('href'),
+        title = anchor.data('title');
+        console.log(title);
+
+    $("#task-modal-subtitle").text(title);
+
+    $.ajax({
+      url: url,
+      dataType: 'html',
+      success: function(response){
+        $('#task-table-body').html(response);
+        initIcheck();
+      }
+    })
 
     $('#task-modal').modal('show');
 });
 
-$(function() {
+function initIcheck() {
     $('input[type=checkbox]').iCheck({
         checkboxClass: 'icheckbox_square-green',
         increaseArea: '20%'
@@ -155,4 +171,4 @@ $(function() {
     $('#check-all').on('ifUnchecked', function(e) {
         $('.check-item').iCheck('uncheck');
     });
-});
+}

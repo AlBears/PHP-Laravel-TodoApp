@@ -3,8 +3,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Todo List</h4>
-        <p>of <strong>To do List 1</strong></p>
+        <h4 class="modal-title">Manage Tasks</h4>
+        <p>of <strong id="task-modal-subtitle"></strong></p>
       </div>
       <div class="modal-body">
         <div class="panel panel-default">
