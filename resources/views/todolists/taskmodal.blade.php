@@ -25,12 +25,12 @@
       </div>
       <div class="modal-footer clearfix">
         <div class="pull-left">
-            <a href="#" class="btn btn-xs btn-default active">All</a>
-            <a href="#" class="btn btn-xs btn-default">Active</a>
-            <a href="#" class="btn btn-xs btn-default">Completed</a>
+            <a id="all-tasks" class="btn btn-xs btn-default filter-btn active">All</a>
+            <a id="active-tasks" class="btn btn-xs btn-default filter-btn">Active</a>
+            <a id="completed-tasks" class="btn btn-xs btn-default filter-btn">Completed</a>
         </div>
         <div class="pull-right">
-            <small>3 items left</small>
+            <small id="active-tasks-counter"></small>
         </div>
       </div>
     </div><!-- /.modal-content -->

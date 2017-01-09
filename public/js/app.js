@@ -136,13 +136,17 @@ $('#confirm-remove-btn').click(function(event){
   });
 });
 
+function countActiveTasks() {
+  var total = $('tr.task-item:not(:has(td.done))').length;
+  $('#active-tasks-counter').text(total + (total>1 ? ' tasks' : ' task') + " left");
+}
+
 $('body').on('click', '.show-task-modal', function(event) {
     event.preventDefault();
 
     var anchor = $(this),
         url = anchor.attr('href'),
         title = anchor.data('title');
-        console.log(title);
 
     $("#task-modal-subtitle").text(title);
 
@@ -152,6 +156,7 @@ $('body').on('click', '.show-task-modal', function(event) {
       success: function(response){
         $('#task-table-body').html(response);
         initIcheck();
+        countActiveTasks();
       }
     })
 
@@ -172,3 +177,25 @@ function initIcheck() {
         $('.check-item').iCheck('uncheck');
     });
 }
+
+$(".filter-btn").click(function(e){
+  e.preventDefault();
+
+  var id = this.id;
+
+  $(this).addClass('active')
+          .parent()
+          .children()
+          .not(e.target)
+          .removeClass('active');
+
+  if (id == "all-tasks") {
+    $('tr.task-item').show();
+  } else if (id == "active-tasks") {
+    $('tr.task-item:has(td.done)').hide();
+    $('tr.task-item:not(:has(td.done))').show();
+  } else if (id == "completed-tasks") {
+    $('tr.task-item:has(td.done)').show();
+    $('tr.task-item:not(:has(td.done))').hide();
+  }
+});
