@@ -53,6 +53,7 @@
             @include('todolists.todolistmodal')
 
             @include('todolists.taskmodal')
+            @include('todolists.confirmmodal')
 
         </div>
     </div>
