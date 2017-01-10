@@ -146,9 +146,11 @@ $('body').on('click', '.show-task-modal', function(event) {
 
     var anchor = $(this),
         url = anchor.attr('href'),
-        title = anchor.data('title');
+        title = anchor.data('title'),
+        action = anchor.data('action');
 
     $("#task-modal-subtitle").text(title);
+    $("#task-form").attr("action", action);
 
     $.ajax({
       url: url,
