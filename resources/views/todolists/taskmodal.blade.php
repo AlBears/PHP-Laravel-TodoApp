@@ -16,6 +16,7 @@
                     <td>
                       <form id="task-form">
                         {{ csrf_field() }}
+                        <input type="hidden" id="selected-todo-list">
                         <input type="text" name="title" id="task-title" placeholder="Enter New Task" class="task-input">
                       </form>
 
