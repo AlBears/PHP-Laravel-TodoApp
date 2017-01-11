@@ -191,8 +191,36 @@ $('#task-form').submit(function(e){
       initIcheck();
       countAllTasksOfSelectedList();
     }
-  })
-})
+  });
+});
+
+function markTheTask(checkbox){
+  var url = checkbox.data('url'),
+  completed = checkbox.is(":checked");
+
+    $.ajax({
+    url:url,
+    type: 'PUT',
+    data: {
+      completed: completed,
+      _token: $("input[name=_token]").val()
+    },
+    success: function(response){
+      if (response) {
+        var nextTd = checkbox.closest('td').next();
+
+        if (completed) {
+          nextTd.addClass('done');
+        }
+        else {
+          nextTd.removeClass('done');
+        }
+
+        countActiveTasks();
+      }
+    }
+    })
+}
 
 function initIcheck() {
     $('input[type=checkbox]').iCheck({
@@ -207,6 +235,16 @@ function initIcheck() {
     $('#check-all').on('ifUnchecked', function(e) {
         $('.check-item').iCheck('uncheck');
     });
+
+    $('.check-item')
+    .on('ifChecked', function(e) {
+      var checkbox = $(this);
+      markTheTask(checkbox);
+    })
+    .on('ifUnchecked', function(e){
+      var checkbox = $(this);
+      markTheTask(checkbox);     
+    })
 }
 
 $(".filter-btn").click(function(e){
